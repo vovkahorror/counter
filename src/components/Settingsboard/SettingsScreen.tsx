@@ -11,9 +11,11 @@ type SettingsboardPropsType = {
 }
 
 const SettingsScreen = (props: SettingsboardPropsType) => {
-    const onValueChange = (handler: (value: number) => void) => (e: ChangeEvent<HTMLInputElement>) => {
-        handler(+e.currentTarget.value);
-        props.setInformationMode(true);
+    const onValueChange = (handler: (value: number) => void) => {
+        return (e: ChangeEvent<HTMLInputElement>) => {
+            handler(+e.currentTarget.value);
+            props.setInformationMode(true);
+        };
     };
 
     const inputClassname = props.error ? `${style.input} ${style.inputError}` : style.input;
