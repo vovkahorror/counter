@@ -6,7 +6,7 @@ const initialState = {
     isInformationMode: false,
 };
 
-export const valuesReducer = (state = initialState, action: ActionsTypes) => {
+export const newValuesReducer = (state = initialState, action: ActionsTypes) => {
     switch (action.type) {
         case 'SET-NEW-START-VALUE':
             return {...state, newStartValue: action.payload.newStartValue};
