@@ -1,21 +1,17 @@
-type ActionsTypes = SetNewStartValueACType | SetNewMaxValueACType | SetInformationModeACType;
+type ActionsType = SetNewStartValueACType | SetNewMaxValueACType;
 
 const initialState = {
     newStartValue: 0,
     newMaxValue: 5,
-    isInformationMode: false,
 };
 
-export const newValuesReducer = (state = initialState, action: ActionsTypes) => {
+export const newValuesReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET-NEW-START-VALUE':
             return {...state, newStartValue: action.payload.newStartValue};
 
         case 'SET-NEW-MAX-VALUE':
             return {...state, maxValue: action.payload.newMaxValue};
-
-        case 'SET-INFORMATION-MODE':
-            return {...state, isInformationMode: action.payload.value};
 
         default:
             return state;
@@ -40,17 +36,6 @@ export const setNewMaxValueAC = (newMaxValue: number) => {
         type: 'SET-NEW-MAX-VALUE',
         payload: {
             newMaxValue,
-        },
-    } as const;
-};
-
-type SetInformationModeACType = ReturnType<typeof setInformationModeAC>
-
-export const setInformationModeAC = (value: boolean) => {
-    return {
-        type: 'SET-INFORMATION-MODE',
-        payload: {
-            value,
         },
     } as const;
 };

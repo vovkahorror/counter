@@ -1,4 +1,4 @@
-type ActionsTypes = SetStartValueACType | SetMaxValueACType | SetValueACType;
+type ActionsType = SetStartValueACType | SetMaxValueACType | SetValueACType;
 
 const initialState = {
     startValue: 0,
@@ -6,7 +6,7 @@ const initialState = {
     value: 0,
 };
 
-export const valuesReducer = (state = initialState, action: ActionsTypes) => {
+export const valuesReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET-START-VALUE':
             return {...state, startValue: action.payload.startValue};
