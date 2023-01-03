@@ -1,4 +1,4 @@
-type ActionsType = SetInformationModeACType
+type ActionsType = SetInformationModeACType | SetErrorACType;
 
 const initialState = {
     isInformationMode: false,
@@ -8,17 +8,34 @@ const initialState = {
 export const commonReducer = (state = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET-INFORMATION-MODE':
-            return {...state, isInformationMode: action.payload.value};
+            return {...state, isInformationMode: action.payload.isInformationMode};
+
+        case 'SET-ERROR':
+            return {...state, isError: action.payload.isError};
+
+        default:
+            return state;
     }
 };
 
 type SetInformationModeACType = ReturnType<typeof setInformationModeAC>
 
-export const setInformationModeAC = (value: boolean) => {
+export const setInformationModeAC = (isInformationMode: boolean) => {
     return {
         type: 'SET-INFORMATION-MODE',
         payload: {
-            value,
+            isInformationMode,
+        },
+    } as const;
+};
+
+type SetErrorACType = ReturnType<typeof setErrorAC>
+
+export const setErrorAC = (isError: boolean) => {
+    return {
+        type: 'SET-ERROR',
+        payload: {
+            isError,
         },
     } as const;
 };

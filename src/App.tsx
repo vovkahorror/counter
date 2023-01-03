@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {Scoreboard} from "./components/Scoreboard/Scoreboard";
+import {ScoreboardScreen} from "./components/Scoreboard/ScoreboardScreen";
 import {Button} from "./components/Button/Button";
 import SettingsScreen from "./components/Settingsboard/SettingsScreen";
 import {useSelector} from "react-redux";
@@ -42,17 +42,13 @@ function App() {
     const newStartValue = useSelector<AppRootStateType, number>(state => state.newValues.newStartValue);
     const newMaxValue = useSelector<AppRootStateType, number>(state => state.newValues.newMaxValue);
 
-    const STEP = 1;
+
     const error = newStartValue < 0 || newMaxValue <= newStartValue;
-    const message = error ? 'Incorrect value!' : 'Enter values and press "set"';
 
-    const increaseCounter = () => {
-        value < maxValue && setValue(value + STEP);
-    };
 
-    const resetCounter = () => {
-        setValue(startValue);
-    };
+
+
+
 
     const setCounter = () => {
         setStartValue(newStartValue);
@@ -66,31 +62,12 @@ function App() {
         setInformationMode(false);
     };
 
-    const disabledIncButton = value === maxValue;
-    const disabledResetButton = value === startValue;
+
 
     return (
         <div className={'App'}>
             <div className={'counter_wrapper'}>
-                <Scoreboard
-                    value={value}
-                    maxValue={maxValue}
-                    error={error}
-                    message={message}
-                    informationMode={informationMode}
-                />
-                <div className={'buttons_wrapper'}>
-                    <Button
-                        title={'inc'}
-                        onClick={increaseCounter}
-                        isDisabledButton={disabledIncButton}
-                    />
-                    <Button
-                        title={'reset'}
-                        onClick={resetCounter}
-                        isDisabledButton={disabledResetButton}
-                    />
-                </div>
+
             </div>
 
             <div className={'counter_wrapper'}>

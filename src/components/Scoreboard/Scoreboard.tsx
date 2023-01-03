@@ -1,23 +1,50 @@
 import React from 'react';
-import style from './Scoreboard.module.css'
+import {ScoreboardScreen} from "./ScoreboardScreen";
+import {Button} from "../Button/Button";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../state/store";
+import {setValueAC} from "../../state/values-reducer";
 
-type ScoreboardPropsType = {
-    value: number;
-    maxValue: number;
-    error: boolean;
-    message: string;
-    informationMode: boolean;
-}
+const Scoreboard = () => {
+    const STEP = 1;
 
+    const dispatch = useDispatch();
 
-export const Scoreboard = (props: ScoreboardPropsType) => {
-    const valueClassname = (props.value < props.maxValue) ? style.defaultValue : `${style.defaultValue} ${style.limitValue}`;
-    const messageClassname = props.error ? `${style.message} ${style.error}` : style.message;
+    const startValue = useSelector<AppRootStateType, number>(state => state.values.startValue);
+    const maxValue = useSelector<AppRootStateType, number>(state => state.values.maxValue);
+    const value = useSelector<AppRootStateType, number>(state => state.values.value);
+
+    const disabledIncButton = value === maxValue;
+    const disabledResetButton = value === startValue;
+
+    const increaseCounter = () => {
+        value < maxValue && dispatch(setValueAC(value + STEP));
+    };
+
+    const resetCounter = () => {
+        dispatch(setValueAC(startValue));
+    };
 
     return (
-        <div className={style.scoreboard}>
-            {props.informationMode ? <span className={messageClassname}>{props.message}</span> :
-                <span className={valueClassname}>{props.value}</span>}
+        <div>
+            <ScoreboardScreen
+                value={value}
+                maxValue={maxValue}
+            />
+            <div className={'buttons_wrapper'}>
+                <Button
+                    title={'inc'}
+                    onClick={increaseCounter}
+                    isDisabledButton={disabledIncButton}
+                />
+                <Button
+                    title={'reset'}
+                    onClick={resetCounter}
+                    isDisabledButton={disabledResetButton}
+                />
+            </div>
         </div>
     );
 };
+
+export default Scoreboard;
