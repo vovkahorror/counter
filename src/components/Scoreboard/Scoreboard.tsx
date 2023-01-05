@@ -1,5 +1,5 @@
 import React, {memo, useCallback} from 'react';
-import {ScoreboardScreen} from "./ScoreboardScreen";
+import {ScoreboardScreen} from "./ScoreboardScreen/ScoreboardScreen";
 import {Button} from "../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";

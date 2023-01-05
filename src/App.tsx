@@ -1,21 +1,11 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import {ScoreboardScreen} from "./components/Scoreboard/ScoreboardScreen";
-import {Button} from "./components/Button/Button";
-import SettingsScreen from "./components/Settings/SettingsScreen";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
 import Scoreboard from "./components/Scoreboard/Scoreboard";
 import Settings from "./components/Settings/Settings";
 
 function App() {
-    /*const [startValue, setStartValue] = useState(0);
-    const [maxValue, setMaxValue] = useState(5);
-    const [value, setValue] = useState(startValue);
-    const [newStartValue, setNewStartValue] = useState(startValue);
-    const [newMaxValue, setNewMaxValue] = useState(maxValue);
-    const [informationMode, setInformationMode] = useState(false);*/
-
     // useEffect(() => {
     //     const startValueAsString = localStorage.getItem('counterStartValue');
     //     startValueAsString && setStartValue(JSON.parse(startValueAsString));
@@ -44,12 +34,6 @@ function App() {
     const value = useSelector<AppRootStateType, number>(state => state.values.value);
 
     const error = useSelector<AppRootStateType, boolean>(state => state.common.isError);
-
-    // const error = newStartValue < 0 || newMaxValue <= newStartValue;
-
-
-
-
 
     return (
         <div className={'App'}>

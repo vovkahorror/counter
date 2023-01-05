@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import style from './Scoreboard.module.css';
+import styles from './ScoreboardScreen.module.css';
 
 type ScoreboardScreenPropsType = {
     value: number;
@@ -11,11 +11,11 @@ type ScoreboardScreenPropsType = {
 export const ScoreboardScreen = memo((props: ScoreboardScreenPropsType) => {
     const message = props.error ? 'Incorrect value!' : 'Enter values and press "set"';
 
-    const valueClassname = (props.value < props.maxValue) ? style.defaultValue : `${style.defaultValue} ${style.limitValue}`;
-    const messageClassname = props.error ? `${style.message} ${style.error}` : style.message;
+    const valueClassname = (props.value < props.maxValue) ? styles.defaultValue : `${styles.defaultValue} ${styles.limitValue}`;
+    const messageClassname = props.error ? `${styles.message} ${styles.error}` : styles.message;
 
     return (
-        <div className={style.scoreboard}>
+        <div className={styles.scoreboard}>
             {props.informationMode
                 ? <span className={messageClassname}>{message}</span>
                 : <span className={valueClassname}>{props.value}</span>}

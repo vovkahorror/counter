@@ -1,5 +1,5 @@
 import React, {ChangeEvent, memo} from 'react';
-import style from './Settings.module.css';
+import styles from './Settings.module.css';
 
 type SettingsScreenPropsType = {
     error: boolean;
@@ -18,12 +18,12 @@ const SettingsScreen = memo((props: SettingsScreenPropsType) => {
         };
     };
 
-    const inputClassname = props.error ? `${style.input} ${style.inputError}` : style.input;
+    const inputClassname = props.error ? `${styles.input} ${styles.inputError}` : styles.input;
 
     return (
-        <div className={style.settingsboard}>
-            <div className={style.settingsboard__item}>
-                <span className={style.text}>max value:</span>
+        <div className={styles.settingsboard}>
+            <div className={styles.settingsboard__item}>
+                <span className={styles.text}>max value:</span>
                 <input
                     className={inputClassname}
                     onChange={onValueChange(props.setNewMaxValue)}
@@ -31,8 +31,8 @@ const SettingsScreen = memo((props: SettingsScreenPropsType) => {
                     type="number"
                 />
             </div>
-            <div className={style.settingsboard__item}>
-                <span className={style.text}>start value:</span>
+            <div className={styles.settingsboard__item}>
+                <span className={styles.text}>start value:</span>
                 <input
                     className={inputClassname}
                     onChange={onValueChange(props.setNewStartValue)}

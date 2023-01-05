@@ -8,7 +8,6 @@ type ButtonPropsType = {
 }
 
 export const Button = memo((props: ButtonPropsType) => {
-    console.log('btn');
     return (
         <button className={style.button} onClick={props.onClick} disabled={props.isDisabledButton}>
             {props.title}
