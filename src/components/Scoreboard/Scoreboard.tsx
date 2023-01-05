@@ -1,35 +1,41 @@
-import React from 'react';
+import React, {memo, useCallback} from 'react';
 import {ScoreboardScreen} from "./ScoreboardScreen";
 import {Button} from "../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
 import {setValueAC} from "../../state/values-reducer";
 
-const Scoreboard = () => {
+type ScoreboardPropsType = {
+    value: number;
+    error: boolean;
+}
+
+const Scoreboard = memo((props: ScoreboardPropsType) => {
     const STEP = 1;
 
     const dispatch = useDispatch();
 
     const startValue = useSelector<AppRootStateType, number>(state => state.values.startValue);
     const maxValue = useSelector<AppRootStateType, number>(state => state.values.maxValue);
-    const value = useSelector<AppRootStateType, number>(state => state.values.value);
 
-    const disabledIncButton = value === maxValue;
-    const disabledResetButton = value === startValue;
+    const informationMode = useSelector<AppRootStateType, boolean>(state => state.common.isInformationMode);
 
-    const increaseCounter = () => {
-        value < maxValue && dispatch(setValueAC(value + STEP));
-    };
+    const disabledIncButton = props.value === maxValue;
+    const disabledResetButton = props.value === startValue;
 
-    const resetCounter = () => {
-        dispatch(setValueAC(startValue));
-    };
+    const increaseCounter = useCallback(() => {
+        props.value < maxValue && dispatch(setValueAC(props.value + STEP));
+    }, [dispatch, props.value]);
+
+    const resetCounter = useCallback(() => dispatch(setValueAC(startValue)), [dispatch, startValue]);
 
     return (
         <div>
             <ScoreboardScreen
-                value={value}
+                value={props.value}
                 maxValue={maxValue}
+                error={props.error}
+                informationMode={informationMode}
             />
             <div className={'buttons_wrapper'}>
                 <Button
@@ -45,6 +51,6 @@ const Scoreboard = () => {
             </div>
         </div>
     );
-};
+});
 
 export default Scoreboard;

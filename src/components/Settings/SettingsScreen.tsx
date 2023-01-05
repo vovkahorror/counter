@@ -1,7 +1,7 @@
-import React, {ChangeEvent} from 'react';
-import style from './Settingsboard.module.css';
+import React, {ChangeEvent, memo} from 'react';
+import style from './Settings.module.css';
 
-type SettingsboardPropsType = {
+type SettingsScreenPropsType = {
     error: boolean;
     newStartValue: number;
     newMaxValue: number;
@@ -10,7 +10,7 @@ type SettingsboardPropsType = {
     setInformationMode: (informationMode: boolean) => void;
 }
 
-const SettingsScreen = (props: SettingsboardPropsType) => {
+const SettingsScreen = memo((props: SettingsScreenPropsType) => {
     const onValueChange = (handler: (value: number) => void) => {
         return (e: ChangeEvent<HTMLInputElement>) => {
             handler(+e.currentTarget.value);
@@ -42,6 +42,6 @@ const SettingsScreen = (props: SettingsboardPropsType) => {
             </div>
         </div>
     );
-};
+});
 
 export default SettingsScreen;

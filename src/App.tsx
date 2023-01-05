@@ -2,9 +2,11 @@ import React, {useEffect} from 'react';
 import './App.css';
 import {ScoreboardScreen} from "./components/Scoreboard/ScoreboardScreen";
 import {Button} from "./components/Button/Button";
-import SettingsScreen from "./components/Settingsboard/SettingsScreen";
+import SettingsScreen from "./components/Settings/SettingsScreen";
 import {useSelector} from "react-redux";
 import {AppRootStateType} from "./state/store";
+import Scoreboard from "./components/Scoreboard/Scoreboard";
+import Settings from "./components/Settings/Settings";
 
 function App() {
     /*const [startValue, setStartValue] = useState(0);
@@ -39,53 +41,24 @@ function App() {
     //     localStorage.setItem('counterValue', JSON.stringify(value));
     // }, [startValue, maxValue, newStartValue, newMaxValue, value]);
 
-    const newStartValue = useSelector<AppRootStateType, number>(state => state.newValues.newStartValue);
-    const newMaxValue = useSelector<AppRootStateType, number>(state => state.newValues.newMaxValue);
+    const value = useSelector<AppRootStateType, number>(state => state.values.value);
+
+    const error = useSelector<AppRootStateType, boolean>(state => state.common.isError);
+
+    // const error = newStartValue < 0 || newMaxValue <= newStartValue;
 
 
-    const error = newStartValue < 0 || newMaxValue <= newStartValue;
-
-
-
-
-
-
-    const setCounter = () => {
-        setStartValue(newStartValue);
-        setMaxValue(newMaxValue);
-        changeScoreboard();
-    };
-
-    const changeScoreboard = () => {
-        value < newStartValue && setValue(newStartValue);
-        value > newMaxValue && setValue(newMaxValue);
-        setInformationMode(false);
-    };
 
 
 
     return (
         <div className={'App'}>
             <div className={'counter_wrapper'}>
-
+                <Scoreboard value={value} error={error}/>
             </div>
 
             <div className={'counter_wrapper'}>
-                <SettingsScreen
-                    error={error}
-                    newStartValue={newStartValue}
-                    newMaxValue={newMaxValue}
-                    setNewStartValue={setNewStartValue}
-                    setNewMaxValue={setNewMaxValue}
-                    setInformationMode={setInformationMode}
-                />
-                <div className={'buttons_wrapper'}>
-                    <Button
-                        title={'set'}
-                        onClick={setCounter}
-                        isDisabledButton={error}
-                    />
-                </div>
+                <Settings value={value} error={error}/>
             </div>
         </div>
     );

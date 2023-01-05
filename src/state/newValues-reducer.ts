@@ -11,7 +11,7 @@ export const newValuesReducer = (state = initialState, action: ActionsType) => {
             return {...state, newStartValue: action.payload.newStartValue};
 
         case 'SET-NEW-MAX-VALUE':
-            return {...state, maxValue: action.payload.newMaxValue};
+            return {...state, newMaxValue: action.payload.newMaxValue};
 
         default:
             return state;
