@@ -1,5 +1,5 @@
 import React, {ChangeEvent, memo} from 'react';
-import styles from './Settings.module.css';
+import styles from './SettingsScreen.module.css';
 
 type SettingsScreenPropsType = {
     error: boolean;

@@ -1,5 +1,5 @@
 import React, {memo, useCallback, useEffect} from 'react';
-import SettingsScreen from "./SettingsScreen";
+import SettingsScreen from "./SettingsScreen/SettingsScreen";
 import {Button} from "../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../state/store";
