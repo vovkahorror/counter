@@ -20,17 +20,17 @@ const Scoreboard = memo((props: ScoreboardPropsType) => {
 
     const informationMode = useSelector<AppRootStateType, boolean>(state => state.common.isInformationMode);
 
-    const disabledIncButton = props.value === maxValue;
-    const disabledResetButton = props.value === startValue;
+    const disabledIncButton = props.value === maxValue || informationMode;
+    const disabledResetButton = props.value === startValue || informationMode;
 
     const increaseCounter = useCallback(() => {
         props.value < maxValue && dispatch(setValueAC(props.value + STEP));
-    }, [dispatch, props.value]);
+    }, [dispatch, maxValue, props.value]);
 
     const resetCounter = useCallback(() => dispatch(setValueAC(startValue)), [dispatch, startValue]);
 
     return (
-        <div>
+        <div className={'counter_wrapper'}>
             <ScoreboardScreen
                 value={props.value}
                 maxValue={maxValue}

@@ -34,7 +34,7 @@ const Settings = memo((props: SettingsPropsType) => {
         dispatch(setStartValueAC(newStartValue));
         dispatch(setMaxValueAC(newMaxValue));
         changeScoreboard();
-    }, [dispatch, changeScoreboard]);
+    }, [dispatch, newStartValue, newMaxValue, changeScoreboard]);
 
     useEffect(() => {
         (newStartValue < 0 || newMaxValue <= newStartValue)
@@ -43,7 +43,7 @@ const Settings = memo((props: SettingsPropsType) => {
     }, [dispatch, newStartValue, newMaxValue]);
 
     return (
-        <div>
+        <div className={'counter_wrapper'}>
             <SettingsScreen
                 error={props.error}
                 newStartValue={newStartValue}

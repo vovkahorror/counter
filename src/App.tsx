@@ -37,13 +37,8 @@ function App() {
 
     return (
         <div className={'App'}>
-            <div className={'counter_wrapper'}>
-                <Scoreboard value={value} error={error}/>
-            </div>
-
-            <div className={'counter_wrapper'}>
                 <Settings value={value} error={error}/>
-            </div>
+                <Scoreboard value={value} error={error}/>
         </div>
     );
 }
