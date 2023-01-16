@@ -24,22 +24,16 @@ const Settings = memo((props: SettingsPropsType) => {
 
     const setInformationMode = useCallback(() => dispatch(setInformationModeAC(true)), [dispatch]);
 
-    const changeScoreboard = useCallback(() => {
-        props.value < newStartValue && dispatch(setValueAC(newStartValue));
-        props.value > newMaxValue && dispatch(setValueAC(newMaxValue));
-        dispatch(setInformationModeAC(false));
-    }, [dispatch, newMaxValue, newStartValue, props.value]);
-
     const setCounter = useCallback(() => {
         dispatch(setStartValueAC(newStartValue));
         dispatch(setMaxValueAC(newMaxValue));
-        changeScoreboard();
-    }, [dispatch, newStartValue, newMaxValue, changeScoreboard]);
+        props.value < newStartValue && dispatch(setValueAC(newStartValue));
+        props.value > newMaxValue && dispatch(setValueAC(newMaxValue));
+        dispatch(setInformationModeAC(false));
+    }, [dispatch, newStartValue, newMaxValue, props.value]);
 
     useEffect(() => {
-        (newStartValue < 0 || newMaxValue <= newStartValue)
-            ? dispatch(setErrorAC(true))
-            : dispatch(setErrorAC(false));
+        dispatch(setErrorAC(newStartValue < 0 || newMaxValue <= newStartValue))
     }, [dispatch, newStartValue, newMaxValue]);
 
     return (

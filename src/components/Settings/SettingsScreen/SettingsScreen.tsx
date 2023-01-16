@@ -18,7 +18,7 @@ const SettingsScreen = memo((props: SettingsScreenPropsType) => {
         };
     };
 
-    const inputClassname = props.error ? `${styles.input} ${styles.inputError}` : styles.input;
+    const inputClassname = `${styles.input} ${props.error ? styles.inputError : ''}`;
 
     return (
         <div className={styles.settingsboard}>

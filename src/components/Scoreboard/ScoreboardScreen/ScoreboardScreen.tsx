@@ -11,8 +11,8 @@ type ScoreboardScreenPropsType = {
 export const ScoreboardScreen = memo((props: ScoreboardScreenPropsType) => {
     const message = props.error ? 'Incorrect value!' : 'Enter values and press "set"';
 
-    const valueClassname = (props.value < props.maxValue) ? styles.defaultValue : `${styles.defaultValue} ${styles.limitValue}`;
-    const messageClassname = props.error ? `${styles.message} ${styles.error}` : styles.message;
+    const valueClassname = `${styles.defaultValue} ${props.value === props.maxValue ? styles.limitValue : ''}`;
+    const messageClassname = `${styles.message} ${props.error ? styles.error: ''}`;
 
     return (
         <div className={styles.scoreboard}>
