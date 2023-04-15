@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
 import Scoreboard from './components/Scoreboard/Scoreboard';

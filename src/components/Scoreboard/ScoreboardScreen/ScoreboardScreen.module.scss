@@ -1,0 +1,25 @@
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 140px;
+  background: darkcyan;
+  border-radius: 10px;
+
+  .message {
+    font-size: 26px;
+    color: white;
+  }
+
+  .defaultValue {
+    font-size: 100px;
+    color: white;
+  }
+
+  .limitValue,
+  .error {
+    color: red;
+    text-decoration: underline;
+  }
+}
